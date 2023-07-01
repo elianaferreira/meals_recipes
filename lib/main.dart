@@ -10,6 +10,7 @@ final theme = ThemeData(
       seedColor: const Color(0XFF95CD41),
     ),
     textTheme: GoogleFonts.latoTextTheme());
+
 void main() {
   runApp(const App());
 }
