@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:meals_recipes/utils/dimens.dart';
-import 'package:transparent_image/transparent_image.dart';
 
+import 'package:meals_recipes/utils/dimens.dart';
+import 'package:meals_recipes/widgets/meal_item_trait.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'package:meals_recipes/models/meal.dart';
 
 class MealItem extends StatelessWidget {
@@ -52,6 +53,19 @@ class MealItem extends StatelessWidget {
                               color: Colors.white),
                         ),
                         const SizedBox(height: Dimens.padding),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            MealItemTrait(
+                                icon: Icons.schedule,
+                                label: '${meal.duration} min'),
+                            MealItemTrait(
+                                icon: Icons.work, label: meal.complecityText),
+                            MealItemTrait(
+                                icon: Icons.attach_money,
+                                label: meal.affordabilityText)
+                          ],
+                        )
                       ],
                     ),
                   ))
