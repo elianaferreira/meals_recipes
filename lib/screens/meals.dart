@@ -6,9 +6,9 @@ import 'package:meals_recipes/utils/dimens.dart';
 import 'package:meals_recipes/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({super.key, required this.title, required this.meals});
+  const MealsScreen({super.key, this.title, required this.meals});
 
-  final String title;
+  final String? title;
   final List<Meal> meals;
 
   @override
@@ -29,23 +29,27 @@ class MealsScreen extends StatelessWidget {
       ]),
     );
 
+    Widget content = meals.isEmpty
+        ? noMealsWidget
+        : ListView.builder(
+            itemCount: meals.length,
+            itemBuilder: (context, index) => MealItem(
+              meal: meals[index],
+              onMealSelected: (ctx, meal) => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (ctx) => MealDetailScreen(meal: meal),
+                  )),
+            ),
+          );
+
+    if (title == null) return content;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(title!),
       ),
-      body: meals.isEmpty
-          ? noMealsWidget
-          : ListView.builder(
-              itemCount: meals.length,
-              itemBuilder: (context, index) => MealItem(
-                meal: meals[index],
-                onMealSelected: (ctx, meal) => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (ctx) => MealDetailScreen(meal: meal),
-                    )),
-              ),
-            ),
+      body: content,
     );
   }
 }
