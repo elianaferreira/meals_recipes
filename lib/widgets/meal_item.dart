@@ -6,9 +6,10 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:meals_recipes/models/meal.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem({super.key, required this.meal});
+  const MealItem({super.key, required this.meal, required this.onMealSelected});
 
   final Meal meal;
+  final void Function(BuildContext context, Meal meal) onMealSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class MealItem extends StatelessWidget {
       elevation: Dimens.elevation,
       child: InkWell(
           onTap: () {
-            print(meal.title);
+            onMealSelected(context, meal);
           },
           child: Stack(
             children: [
@@ -52,7 +53,7 @@ class MealItem extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
-                        const SizedBox(height: Dimens.padding),
+                        const SizedBox(height: Dimens.paddingMedium),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

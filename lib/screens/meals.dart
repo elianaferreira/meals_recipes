@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:meals_recipes/models/meal.dart';
+import 'package:meals_recipes/screens/meal_detail.dart';
 import 'package:meals_recipes/utils/dimens.dart';
 import 'package:meals_recipes/widgets/meal_item.dart';
 
@@ -36,7 +37,14 @@ class MealsScreen extends StatelessWidget {
           ? noMealsWidget
           : ListView.builder(
               itemCount: meals.length,
-              itemBuilder: (context, index) => MealItem(meal: meals[index]),
+              itemBuilder: (context, index) => MealItem(
+                meal: meals[index],
+                onMealSelected: (ctx, meal) => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (ctx) => MealDetailScreen(meal: meal),
+                    )),
+              ),
             ),
     );
   }
