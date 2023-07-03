@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:meals_recipes/screens/tabs.dart';
-import 'package:meals_recipes/utils/dimens.dart';
+import 'package:meals_recipes/widgets/filter_item.dart';
 import 'package:meals_recipes/widgets/main_drawer.dart';
 
 class FiltersScreen extends StatefulWidget {
@@ -13,7 +14,10 @@ class FiltersScreen extends StatefulWidget {
 }
 
 class _FiltersState extends State<FiltersScreen> {
-  var _glutenFreeFilterSet = false;
+  bool _glutenFreeFilterSet = false;
+  bool _lactoseFreenFilterSet = false;
+  bool _vegetarianFilterSet = false;
+  bool _veganFilterSet = false;
 
   @override
   Widget build(BuildContext context) {
@@ -31,29 +35,38 @@ class _FiltersState extends State<FiltersScreen> {
       ),
       body: Column(
         children: [
-          SwitchListTile(
-            value: _glutenFreeFilterSet,
-            onChanged: (isChecked) => setState(() {
+          FilterItem(
+            title: 'Gluten-free',
+            subtitle: 'Only inlcude gluten-free meals.',
+            filterValue: _glutenFreeFilterSet,
+            onCheckedChange: (isChecked) => setState(() {
               _glutenFreeFilterSet = isChecked;
             }),
-            title: Text(
-              'Gluten-free',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge!
-                  .copyWith(color: Theme.of(context).colorScheme.onBackground),
-            ),
-            subtitle: Text(
-              'Only inlcude glutenf-free meals.  ',
-              style: Theme.of(context)
-                  .textTheme
-                  .labelMedium!
-                  .copyWith(color: Theme.of(context).colorScheme.onBackground),
-            ),
-            activeColor: Theme.of(context).colorScheme.tertiary,
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: Dimens.padding),
-          )
+          ),
+          FilterItem(
+            title: 'Lactose-free',
+            subtitle: 'Only inlcude lactose-free meals.',
+            filterValue: _lactoseFreenFilterSet,
+            onCheckedChange: (isChecked) => setState(() {
+              _lactoseFreenFilterSet = isChecked;
+            }),
+          ),
+          FilterItem(
+            title: 'Vegetarian',
+            subtitle: 'Only inlcude vegetarian meals.',
+            filterValue: _vegetarianFilterSet,
+            onCheckedChange: (isChecked) => setState(() {
+              _vegetarianFilterSet = isChecked;
+            }),
+          ),
+          FilterItem(
+            title: 'Vegan ',
+            subtitle: 'Only inlcude vegan meals.',
+            filterValue: _veganFilterSet,
+            onCheckedChange: (isChecked) => setState(() {
+              _veganFilterSet = isChecked;
+            }),
+          ),
         ],
       ),
     );
