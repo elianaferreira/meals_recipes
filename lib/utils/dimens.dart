@@ -9,4 +9,6 @@ class Dimens {
   static const double imageHeight = 300;
   static const double elevation = 4;
   static const double iconSize = 16;
+  static const double iconSizeMedium = 26;
+  static const double iconSizeBig = 48;
 }

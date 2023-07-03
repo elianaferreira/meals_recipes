@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:meals_recipes/models/meal.dart';
 import 'package:meals_recipes/screens/categories.dart';
 import 'package:meals_recipes/screens/meals.dart';
+import 'package:meals_recipes/widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -41,6 +42,14 @@ class _TabsState extends State<TabsScreen> {
         .showSnackBar(SnackBar(content: Text(message)));
   }
 
+  void _setScreen(ScreenIdentifier identifier) {
+    if (identifier == ScreenIdentifier.filters) {
+    } else {
+      Navigator.of(context).pop();
+      selectPage(0);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget activePage = CategoriesScreen(
@@ -59,6 +68,7 @@ class _TabsState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(activePageTitle),
       ),
+      drawer: MainDrawer(onSelectScreen: _setScreen),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         onTap: selectPage,
