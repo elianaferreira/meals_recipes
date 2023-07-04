@@ -33,27 +33,25 @@ class MealDetailScreen extends ConsumerWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: Expanded(
-          child: Column(
-            children: [
-              FadeInImage(
-                placeholder: MemoryImage(kTransparentImage),
-                image: NetworkImage(meal.imageUrl),
-                fit: BoxFit.cover,
-                height: Dimens.imageHeight,
-                width: MediaQuery.of(context).size.width,
-              ),
-              const SizedBox(height: Dimens.padding),
-              MealDetailList(title: 'Ingredients', body: meal.ingredients),
-              const SizedBox(height: Dimens.padding),
-              MealDetailList(
-                title: 'Steps',
-                body: meal.steps,
-                verticalPadding: Dimens.paddingSmall,
-              ),
-              const SizedBox(height: Dimens.padding),
-            ],
-          ),
+        child: Column(
+          children: [
+            FadeInImage(
+              placeholder: MemoryImage(kTransparentImage),
+              image: NetworkImage(meal.imageUrl),
+              fit: BoxFit.cover,
+              height: Dimens.imageHeight,
+              width: MediaQuery.of(context).size.width,
+            ),
+            const SizedBox(height: Dimens.padding),
+            MealDetailList(title: 'Ingredients', body: meal.ingredients),
+            const SizedBox(height: Dimens.padding),
+            MealDetailList(
+              title: 'Steps',
+              body: meal.steps,
+              verticalPadding: Dimens.paddingSmall,
+            ),
+            const SizedBox(height: Dimens.padding),
+          ],
         ),
       ),
     );
