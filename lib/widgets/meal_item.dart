@@ -25,12 +25,15 @@ class MealItem extends StatelessWidget {
           },
           child: Stack(
             children: [
-              FadeInImage(
-                placeholder: MemoryImage(kTransparentImage),
-                image: NetworkImage(meal.imageUrl),
-                fit: BoxFit.cover,
-                height: Dimens.itemHeight,
-                width: MediaQuery.of(context).size.width,
+              Hero(
+                tag: meal.id,
+                child: FadeInImage(
+                  placeholder: MemoryImage(kTransparentImage),
+                  image: NetworkImage(meal.imageUrl),
+                  fit: BoxFit.cover,
+                  height: Dimens.itemHeight,
+                  width: MediaQuery.of(context).size.width,
+                ),
               ),
               Positioned(
                   bottom: 0,
